@@ -128,6 +128,67 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/x11_section_title"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/x11_section_description"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/x11_status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="13sp"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/x11_button_install_native"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/x11_action_install_native" />
+
+            <Button
+                android:id="@+id/x11_button_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/x11_action_start" />
+
+            <Button
+                android:id="@+id/x11_button_stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/x11_action_stop" />
+
+            <Button
+                android:id="@+id/x11_button_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/x11_action_open" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

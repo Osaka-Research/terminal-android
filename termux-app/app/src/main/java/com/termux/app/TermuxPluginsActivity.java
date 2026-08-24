@@ -100,6 +100,51 @@ public class TermuxPluginsActivity extends AppCompatActivity {
             mImportLauncher.launch(new String[]{"application/json"}));
 
         setUpUpdatesSection();
+        setUpX11Section();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshX11Status();
+    }
+
+    private void setUpX11Section() {
+        findViewById(R.id.x11_button_install_native).setOnClickListener(v -> {
+            TermuxX11Controller.installNativeServer(this);
+            Toast.makeText(this, R.string.x11_action_install_native, Toast.LENGTH_SHORT).show();
+        });
+        findViewById(R.id.x11_button_start).setOnClickListener(v -> {
+            TermuxX11Controller.startServer(this);
+            findViewById(R.id.x11_status_text).postDelayed(this::refreshX11Status, 1500);
+        });
+        findViewById(R.id.x11_button_stop).setOnClickListener(v -> {
+            TermuxX11Controller.stopServer(this);
+            findViewById(R.id.x11_status_text).postDelayed(this::refreshX11Status, 500);
+        });
+        findViewById(R.id.x11_button_open).setOnClickListener(v -> TermuxX11Controller.openDesktop(this));
+
+        refreshX11Status();
+    }
+
+    private void refreshX11Status() {
+        TextView statusText = findViewById(R.id.x11_status_text);
+        boolean companionInstalled = TermuxX11Controller.isCompanionAppInstalled(this);
+        boolean nativeInstalled = TermuxX11Controller.isNativeServerInstalled();
+        boolean running = TermuxX11Controller.isSessionRunning();
+
+        if (!companionInstalled) {
+            statusText.setText(R.string.x11_status_companion_missing);
+        } else if (!nativeInstalled) {
+            statusText.setText(R.string.x11_status_native_missing);
+        } else {
+            statusText.setText(running ? R.string.x11_status_running : R.string.x11_status_not_running);
+        }
+
+        findViewById(R.id.x11_button_install_native).setEnabled(companionInstalled && !nativeInstalled);
+        findViewById(R.id.x11_button_start).setEnabled(companionInstalled && nativeInstalled && !running);
+        findViewById(R.id.x11_button_stop).setEnabled(running);
+        findViewById(R.id.x11_button_open).setEnabled(companionInstalled);
     }
 
     private void setUpUpdatesSection() {

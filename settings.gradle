@@ -30,7 +30,20 @@ project(':gui').projectDir = new File(rootDir, 'termux-gui/app')
 include ':hbuffers'
 project(':hbuffers').projectDir = new File(rootDir, 'termux-gui/hbuffers')
 
-// termux-x11 is NOT merged -- see README note. Its native-loading mechanism
-// (shell-loader) structurally depends on being a *separately installed*
-// package with its own signature, not on organizational preference like the
-// other plugins. Kept as a normal sibling checkout for reference only.
+// termux-x11 is built as its OWN separate APK ("com.termux.x11"), not merged into :app --
+// its native-loading mechanism (shell-loader) structurally depends on being a separately
+// installed, separately signed package, unlike the plugins above. Signed with the same shared
+// debug key as everything else here, using its "sharedUid" flavor (android:sharedUserId=
+// "com.termux"), so once both APKs are installed its MainActivity runs in :app's own process
+// and TermuxX11Controller (in :app) can call it directly instead of only over IPC.
+include ':x11'
+project(':x11').projectDir = new File(rootDir, 'termux-x11/lorie-app')
+
+include ':lorie'
+project(':lorie').projectDir = new File(rootDir, 'termux-x11/lorie')
+
+include ':shell-loader'
+project(':shell-loader').projectDir = new File(rootDir, 'termux-x11/shell-loader')
+
+include ':shell-loader:stub'
+project(':shell-loader:stub').projectDir = new File(rootDir, 'termux-x11/shell-loader/stub')

@@ -83,6 +83,19 @@
     <string name="update_download_title">Downloading Termux update</string>
 
 
+    <!-- X11 desktop -->
+    <string name="x11_section_title">X11 Desktop</string>
+    <string name="x11_section_description">Needs the Termux:X11 companion app (built as a separate APK alongside this one) plus the termux-x11-nightly package.</string>
+    <string name="x11_status_companion_missing">Companion app not installed</string>
+    <string name="x11_status_native_missing">Native server not installed (pkg install termux-x11-nightly)</string>
+    <string name="x11_status_not_running">Ready, not running</string>
+    <string name="x11_status_running">Session running</string>
+    <string name="x11_action_install_native">Install termux-x11-nightly</string>
+    <string name="x11_action_start">Start</string>
+    <string name="x11_action_stop">Stop</string>
+    <string name="x11_action_open">Open</string>
+
+
 
     <!-- Termux RUN_COMMAND permission -->
     <string name="permission_run_command_label">Run commands in &TERMUX_APP_NAME; environment</string>

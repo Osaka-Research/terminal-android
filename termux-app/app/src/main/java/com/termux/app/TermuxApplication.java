@@ -114,6 +114,29 @@ public class TermuxApplication extends Application {
             result.putBoolean("ok", true);
             return result;
         });
+
+        com.termux.shared.termux.plugins.PluginBridge.register("x11", "start", args -> {
+            TermuxX11Controller.startServer(this);
+            android.os.Bundle result = new android.os.Bundle();
+            result.putBoolean("ok", true);
+            return result;
+        });
+
+        com.termux.shared.termux.plugins.PluginBridge.register("x11", "stop", args -> {
+            TermuxX11Controller.stopServer(this);
+            android.os.Bundle result = new android.os.Bundle();
+            result.putBoolean("ok", true);
+            return result;
+        });
+
+        com.termux.shared.termux.plugins.PluginBridge.register("x11", "status", args -> {
+            android.os.Bundle result = new android.os.Bundle();
+            result.putBoolean("ok", true);
+            result.putBoolean("companion_installed", TermuxX11Controller.isCompanionAppInstalled(this));
+            result.putBoolean("native_server_installed", TermuxX11Controller.isNativeServerInstalled());
+            result.putBoolean("session_running", TermuxX11Controller.isSessionRunning());
+            return result;
+        });
     }
 
     public static void setLogConfig(Context context) {

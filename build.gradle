@@ -1,0 +1,21 @@
+buildscript {
+    ext.kotlin_version = '1.9.10' // required by termux-styling / termux-tasker / termux-gui
+
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.13.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.protobuf:protobuf-gradle-plugin:0.9.4" // required by termux-gui
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+}

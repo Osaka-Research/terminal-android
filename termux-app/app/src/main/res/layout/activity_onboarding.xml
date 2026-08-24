@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding_title"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/onboarding_subtitle"
+            android:textSize="14sp" />
+
+        <!-- Storage -->
+        <LinearLayout
+            android:id="@+id/onboarding_row_storage"
+            style="@style/OnboardingRow">
+            <TextView style="@style/OnboardingRowTitle" android:text="@string/onboarding_permission_storage_title" />
+            <TextView style="@style/OnboardingRowDescription" android:text="@string/onboarding_permission_storage_description" />
+            <TextView android:id="@+id/onboarding_status_storage" style="@style/OnboardingRowStatus" />
+            <Button android:id="@+id/onboarding_button_storage" style="@style/OnboardingRowButton" android:text="@string/onboarding_action_grant" />
+        </LinearLayout>
+
+        <!-- Notifications -->
+        <LinearLayout
+            android:id="@+id/onboarding_row_notifications"
+            style="@style/OnboardingRow">
+            <TextView style="@style/OnboardingRowTitle" android:text="@string/onboarding_permission_notifications_title" />
+            <TextView style="@style/OnboardingRowDescription" android:text="@string/onboarding_permission_notifications_description" />
+            <TextView android:id="@+id/onboarding_status_notifications" style="@style/OnboardingRowStatus" />
+            <Button android:id="@+id/onboarding_button_notifications" style="@style/OnboardingRowButton" android:text="@string/onboarding_action_grant" />
+        </LinearLayout>
+
+        <!-- Display over other apps (Termux:Float) -->
+        <LinearLayout
+            android:id="@+id/onboarding_row_display_over_apps"
+            style="@style/OnboardingRow">
+            <TextView style="@style/OnboardingRowTitle" android:text="@string/onboarding_permission_display_over_apps_title" />
+            <TextView style="@style/OnboardingRowDescription" android:text="@string/onboarding_permission_display_over_apps_description" />
+            <TextView android:id="@+id/onboarding_status_display_over_apps" style="@style/OnboardingRowStatus" />
+            <Button android:id="@+id/onboarding_button_display_over_apps" style="@style/OnboardingRowButton" android:text="@string/onboarding_action_grant" />
+        </LinearLayout>
+
+        <!-- Ignore battery optimizations -->
+        <LinearLayout
+            android:id="@+id/onboarding_row_battery"
+            style="@style/OnboardingRow">
+            <TextView style="@style/OnboardingRowTitle" android:text="@string/onboarding_permission_battery_title" />
+            <TextView style="@style/OnboardingRowDescription" android:text="@string/onboarding_permission_battery_description" />
+            <TextView android:id="@+id/onboarding_status_battery" style="@style/OnboardingRowStatus" />
+            <Button android:id="@+id/onboarding_button_battery" style="@style/OnboardingRowButton" android:text="@string/onboarding_action_grant" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/onboarding_button_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/onboarding_action_continue" />
+
+    </LinearLayout>
+
+</ScrollView>

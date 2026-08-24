@@ -1,0 +1,36 @@
+rootProject.name = "termux-clone"
+
+include ':app', ':termux-shared', ':terminal-emulator', ':terminal-view'
+project(':app').projectDir                 = new File(rootDir, 'termux-app/app')
+project(':termux-shared').projectDir       = new File(rootDir, 'termux-app/termux-shared')
+project(':terminal-emulator').projectDir   = new File(rootDir, 'termux-app/terminal-emulator')
+project(':terminal-view').projectDir       = new File(rootDir, 'termux-app/terminal-view')
+
+include ':api'
+project(':api').projectDir = new File(rootDir, 'termux-api/app')
+
+include ':boot'
+project(':boot').projectDir = new File(rootDir, 'termux-boot/app')
+
+include ':widget'
+project(':widget').projectDir = new File(rootDir, 'termux-widget/app')
+
+include ':float'
+project(':float').projectDir = new File(rootDir, 'termux-float/app')
+
+include ':styling'
+project(':styling').projectDir = new File(rootDir, 'termux-styling/app')
+
+include ':tasker'
+project(':tasker').projectDir = new File(rootDir, 'termux-tasker/app')
+
+include ':gui'
+project(':gui').projectDir = new File(rootDir, 'termux-gui/app')
+
+include ':hbuffers'
+project(':hbuffers').projectDir = new File(rootDir, 'termux-gui/hbuffers')
+
+// termux-x11 is NOT merged -- see README note. Its native-loading mechanism
+// (shell-loader) structurally depends on being a *separately installed*
+// package with its own signature, not on organizational preference like the
+// other plugins. Kept as a normal sibling checkout for reference only.

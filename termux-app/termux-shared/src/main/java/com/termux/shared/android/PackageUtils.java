@@ -38,9 +38,15 @@ public class PackageUtils {
      * that package is never separately installed here, resolve any such lookup to
      * this app's own package instead of letting it report "not installed".
      */
+    /** Every plugin's Java namespace is permanently under "com.termux." (api/boot/widget/
+     * window/styling/tasker/gui) regardless of what applicationId this build actually
+     * installs as -- that's fixed source-code structure, not something a rename touches.
+     * Matching on that prefix instead of the live applicationId means this keeps working
+     * whether this app is installed as "com.termux" or a renamed id like
+     * "com.termux.merged" for side-by-side installs. */
     private static String resolveMergedPackageName(@NonNull final Context context, final String packageName) {
         if (packageName != null && !packageName.equals(context.getPackageName())
-            && packageName.startsWith(context.getPackageName() + ".")) {
+            && packageName.startsWith("com.termux.")) {
             return context.getPackageName();
         }
         return packageName;

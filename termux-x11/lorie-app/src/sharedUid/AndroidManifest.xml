@@ -1,12 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:sharedUserId="com.termux"
+    android:sharedUserId="com.termux.merged"
     tools:ignore="Deprecated">
     <application>
-        <!-- Keeps termux-x11's process from being classified separately from termux's own cpuset. -->
-        <activity android:name="com.termux.x11.MainActivity" android:process="com.termux" />
-        <activity android:name="com.termux.x11.LoriePreferences" android:process="com.termux" />
-        <receiver android:name="com.termux.x11.LorieBroadcastReceiver" android:process="com.termux" />
-        <receiver android:name="com.termux.x11.LoriePreferences$Receiver" android:process="com.termux" />
+        <!-- Keeps termux-x11's process from being classified separately from the merged
+             Termux app's own cpuset. Must match TermuxConstants.TERMUX_PACKAGE_NAME there. -->
+        <activity android:name="com.termux.x11.MainActivity" android:process="com.termux.merged" />
+        <activity android:name="com.termux.x11.LoriePreferences" android:process="com.termux.merged" />
+        <receiver android:name="com.termux.x11.LorieBroadcastReceiver" android:process="com.termux.merged" />
+        <receiver android:name="com.termux.x11.LoriePreferences$Receiver" android:process="com.termux.merged" />
     </application>
 </manifest>

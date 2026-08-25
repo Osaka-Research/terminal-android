@@ -146,7 +146,9 @@ class TermuxStyleActivity : Activity() {
         try {
             val assetsFolder = if (colors) "colors" else "fonts"
 
-            val context = createPackageContext("com.termux", Context.CONTEXT_IGNORE_SECURITY)
+            // Styling is merged into the main app now, not a separately installed package --
+            // just use our own context instead of a package name that might get renamed.
+            val context = createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY)
             val homeDir = File(context.filesDir, "home")
             val termuxDir = File(homeDir, ".termux")
             if (!(termuxDir.isDirectory || termuxDir.mkdirs()))
@@ -176,8 +178,9 @@ class TermuxStyleActivity : Activity() {
             }
             atomicFile.finishWrite(out)
 
-            // Note: Must match constant in Term#onCreate():
-            val actionReload = "com.termux.app.reload_style"
+            // Note: Must match TermuxConstants.TERMUX_APP.TERMUX_ACTIVITY.ACTION_RELOAD_STYLE,
+            // which is derived from TERMUX_PACKAGE_NAME -- not a fixed literal.
+            val actionReload = "$packageName.app.reload_style"
             val executeIntent = Intent(actionReload)
             executeIntent.putExtra(actionReload, if (colors) "colors" else "font")
             sendBroadcast(executeIntent)

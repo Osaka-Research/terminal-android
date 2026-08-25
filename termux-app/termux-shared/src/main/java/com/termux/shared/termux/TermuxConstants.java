@@ -348,8 +348,11 @@ public final class TermuxConstants {
 
     /** Termux app name */
     public static final String TERMUX_APP_NAME = "Termux"; // Default: "Termux"
-    /** Termux package name */
-    public static final String TERMUX_PACKAGE_NAME = "com.termux"; // Default: "com.termux"
+    /** Termux package name -- this is the merged build's own applicationId (not
+     * upstream Termux's "com.termux"), since installing alongside a real Termux install
+     * needs a distinct identity: same applicationId + a different signing key means
+     * Android refuses the install outright. */
+    public static final String TERMUX_PACKAGE_NAME = "com.termux.merged"; // Default (upstream): "com.termux"
     /** Termux GitHub repo name */
     public static final String TERMUX_GITHUB_REPO_NAME = "termux-app"; // Default: "termux-app"
     /** Termux GitHub repo url */
@@ -362,8 +365,12 @@ public final class TermuxConstants {
 
     /** Termux:API app name */
     public static final String TERMUX_API_APP_NAME = "Termux:API"; // Default: "Termux:API"
-    /** Termux:API app package name */
-    public static final String TERMUX_API_PACKAGE_NAME = TERMUX_PACKAGE_NAME + ".api"; // Default: "com.termux.api"
+    /** Termux:API's own Java namespace -- fixed, independent of {@link #TERMUX_PACKAGE_NAME}
+     * now that plugins are merged in under a possibly-renamed applicationId. Used to build
+     * fully-qualified class names within that namespace (e.g. TermuxApiReceiver); the
+     * *installed* package to target is {@link #TERMUX_PACKAGE_NAME} instead, since these
+     * classes physically live inside this app once merged. */
+    public static final String TERMUX_API_PACKAGE_NAME = "com.termux.api"; // Fixed Java namespace, not applicationId
     /** Termux:API GitHub repo name */
     public static final String TERMUX_API_GITHUB_REPO_NAME = "termux-api"; // Default: "termux-api"
     /** Termux:API GitHub repo url */
@@ -376,8 +383,8 @@ public final class TermuxConstants {
 
     /** Termux:Boot app name */
     public static final String TERMUX_BOOT_APP_NAME = "Termux:Boot"; // Default: "Termux:Boot"
-    /** Termux:Boot app package name */
-    public static final String TERMUX_BOOT_PACKAGE_NAME = TERMUX_PACKAGE_NAME + ".boot"; // Default: "com.termux.boot"
+    /** Termux:Boot's own Java namespace -- see {@link #TERMUX_API_PACKAGE_NAME} note. */
+    public static final String TERMUX_BOOT_PACKAGE_NAME = "com.termux.boot"; // Fixed Java namespace, not applicationId
     /** Termux:Boot GitHub repo name */
     public static final String TERMUX_BOOT_GITHUB_REPO_NAME = "termux-boot"; // Default: "termux-boot"
     /** Termux:Boot GitHub repo url */
@@ -390,8 +397,8 @@ public final class TermuxConstants {
 
     /** Termux:Float app name */
     public static final String TERMUX_FLOAT_APP_NAME = "Termux:Float"; // Default: "Termux:Float"
-    /** Termux:Float app package name */
-    public static final String TERMUX_FLOAT_PACKAGE_NAME = TERMUX_PACKAGE_NAME + ".window"; // Default: "com.termux.window"
+    /** Termux:Float's own Java namespace -- see {@link #TERMUX_API_PACKAGE_NAME} note. */
+    public static final String TERMUX_FLOAT_PACKAGE_NAME = "com.termux.window"; // Fixed Java namespace, not applicationId
     /** Termux:Float GitHub repo name */
     public static final String TERMUX_FLOAT_GITHUB_REPO_NAME = "termux-float"; // Default: "termux-float"
     /** Termux:Float GitHub repo url */
@@ -404,8 +411,8 @@ public final class TermuxConstants {
 
     /** Termux:Styling app name */
     public static final String TERMUX_STYLING_APP_NAME = "Termux:Styling"; // Default: "Termux:Styling"
-    /** Termux:Styling app package name */
-    public static final String TERMUX_STYLING_PACKAGE_NAME = TERMUX_PACKAGE_NAME + ".styling"; // Default: "com.termux.styling"
+    /** Termux:Styling's own Java namespace -- see {@link #TERMUX_API_PACKAGE_NAME} note. */
+    public static final String TERMUX_STYLING_PACKAGE_NAME = "com.termux.styling"; // Fixed Java namespace, not applicationId
     /** Termux:Styling GitHub repo name */
     public static final String TERMUX_STYLING_GITHUB_REPO_NAME = "termux-styling"; // Default: "termux-styling"
     /** Termux:Styling GitHub repo url */
@@ -418,8 +425,8 @@ public final class TermuxConstants {
 
     /** Termux:Tasker app name */
     public static final String TERMUX_TASKER_APP_NAME = "Termux:Tasker"; // Default: "Termux:Tasker"
-    /** Termux:Tasker app package name */
-    public static final String TERMUX_TASKER_PACKAGE_NAME = TERMUX_PACKAGE_NAME + ".tasker"; // Default: "com.termux.tasker"
+    /** Termux:Tasker's own Java namespace -- see {@link #TERMUX_API_PACKAGE_NAME} note. */
+    public static final String TERMUX_TASKER_PACKAGE_NAME = "com.termux.tasker"; // Fixed Java namespace, not applicationId
     /** Termux:Tasker GitHub repo name */
     public static final String TERMUX_TASKER_GITHUB_REPO_NAME = "termux-tasker"; // Default: "termux-tasker"
     /** Termux:Tasker GitHub repo url */
@@ -432,8 +439,8 @@ public final class TermuxConstants {
 
     /** Termux:Widget app name */
     public static final String TERMUX_WIDGET_APP_NAME = "Termux:Widget"; // Default: "Termux:Widget"
-    /** Termux:Widget app package name */
-    public static final String TERMUX_WIDGET_PACKAGE_NAME = TERMUX_PACKAGE_NAME + ".widget"; // Default: "com.termux.widget"
+    /** Termux:Widget's own Java namespace -- see {@link #TERMUX_API_PACKAGE_NAME} note. */
+    public static final String TERMUX_WIDGET_PACKAGE_NAME = "com.termux.widget"; // Fixed Java namespace, not applicationId
     /** Termux:Widget GitHub repo name */
     public static final String TERMUX_WIDGET_GITHUB_REPO_NAME = "termux-widget"; // Default: "termux-widget"
     /** Termux:Widget GitHub repo url */

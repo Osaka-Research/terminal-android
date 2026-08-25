@@ -28,7 +28,9 @@ def keyStore = java.security.KeyStore.getInstance(java.security.KeyStore.getDefa
 keyStore.load(new FileInputStream(signingConfig.storeFile), signingConfig.keyPassword.toCharArray())
 
 ext.targetApplicationId = "com.termux.x11"
-ext.embeddedApplicationId = "com.termux"
+// The merged Termux build here installs as "com.termux.merged", not upstream's "com.termux"
+// -- must match TermuxConstants.TERMUX_PACKAGE_NAME.
+ext.embeddedApplicationId = "com.termux.merged"
 
 android.defaultConfig.buildConfigField "String", "APPLICATION_ID", "\"$targetApplicationId\""
 android.defaultConfig.buildConfigField "String", "EMBEDDED_APPLICATION_ID", "\"$embeddedApplicationId\""

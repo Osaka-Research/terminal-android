@@ -50,6 +50,11 @@ android {
     }
 
     defaultConfig {
+        // Namespace stays "com.termux" (all Java package decls/R refs are unchanged) but
+        // applicationId is a distinct identity -- same id + a different signing key than
+        // upstream Termux's real release key means Android would refuse to install this
+        // alongside (or over) an existing real Termux install otherwise.
+        applicationId "com.termux.merged"
         minSdkVersion project.properties.minSdkVersion.toInteger()
         targetSdkVersion project.properties.targetSdkVersion.toInteger()
         versionCode 118
@@ -60,7 +65,7 @@ android {
 
         buildConfigField "String", "TERMUX_PACKAGE_VARIANT", "\"" + project.ext.packageVariant + "\"" // Used by TermuxApplication class
 
-        manifestPlaceholders.TERMUX_PACKAGE_NAME = "com.termux"
+        manifestPlaceholders.TERMUX_PACKAGE_NAME = "com.termux.merged"
         manifestPlaceholders.TERMUX_APP_NAME = "Termux"
         manifestPlaceholders.TERMUX_API_APP_NAME = "Termux:API"
         manifestPlaceholders.TERMUX_BOOT_APP_NAME = "Termux:Boot"

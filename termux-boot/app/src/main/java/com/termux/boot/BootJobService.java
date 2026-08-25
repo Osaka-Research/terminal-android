@@ -15,10 +15,13 @@ public class BootJobService extends JobService {
 
     private static final String TAG = "termux";
 
-    // Constants from TermuxService.
-    private static final String TERMUX_SERVICE = "com.termux.app.TermuxService";
-    private static final String ACTION_EXECUTE = "com.termux.service_execute";
-    private static final String EXTRA_EXECUTE_IN_BACKGROUND = "com.termux.execute.background";
+    // Constants from TermuxService -- kept as local literals here (boot doesn't depend on
+    // termux-shared) so these must be updated by hand if TermuxConstants.TERMUX_PACKAGE_NAME
+    // ever changes, since TermuxService derives its real action strings from that constant.
+    private static final String TERMUX_PACKAGE_NAME = "com.termux.merged";
+    private static final String TERMUX_SERVICE = TERMUX_PACKAGE_NAME + ".app.TermuxService";
+    private static final String ACTION_EXECUTE = TERMUX_PACKAGE_NAME + ".service_execute";
+    private static final String EXTRA_EXECUTE_IN_BACKGROUND = TERMUX_PACKAGE_NAME + ".execute.background";
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -27,9 +30,9 @@ public class BootJobService extends JobService {
         PersistableBundle extras = params.getExtras();
         String filePath = extras.getString(SCRIPT_FILE_PATH);
 
-        Uri scriptUri = new Uri.Builder().scheme("com.termux.file").path(filePath).build();
+        Uri scriptUri = new Uri.Builder().scheme(TERMUX_PACKAGE_NAME + ".file").path(filePath).build();
         Intent executeIntent = new Intent(ACTION_EXECUTE, scriptUri);
-        executeIntent.setClassName("com.termux", TERMUX_SERVICE);
+        executeIntent.setClassName(TERMUX_PACKAGE_NAME, TERMUX_SERVICE);
         executeIntent.putExtra(EXTRA_EXECUTE_IN_BACKGROUND, true);
 
         Context context = getApplicationContext();

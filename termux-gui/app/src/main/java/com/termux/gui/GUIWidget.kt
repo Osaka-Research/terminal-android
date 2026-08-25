@@ -66,7 +66,8 @@ class GUIWidget : AppWidgetProvider() {
             val v = RemoteViews(c.packageName, R.layout.widget_preview)
             
             val i = Intent(Intent.ACTION_MAIN)
-            i.component = ComponentName.createRelative("com.termux", ".app.TermuxActivity")
+            // Termux is merged into this app now, not a separately installed package.
+            i.component = ComponentName.createRelative(c.packageName, ".app.TermuxActivity")
             v.setOnClickPendingIntent(R.id.widget_root, PendingIntent.getActivity(c, 0, i, PendingIntent.FLAG_IMMUTABLE))
             return v
         }

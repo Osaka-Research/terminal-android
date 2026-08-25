@@ -80,11 +80,12 @@ android {
     defaultConfig {
         minSdk 24
         targetSdk 34
-        // Kept even though this is a library now (no applicationId/packaging effect) --
-        // V0Json.kt/HandleGlobal.kt read BuildConfig.VERSION_CODE, which only generates
-        // if these are actually set.
-        versionCode 8
-        versionName "1.0.0"
+        // AGP does not auto-generate BuildConfig.VERSION_CODE/VERSION_NAME for library
+        // modules even with defaultConfig.versionCode/versionName set (those two fields
+        // are application-output-only) -- same limitation :lorie already works around
+        // with its own explicit buildConfigField calls. V0Json.kt/HandleGlobal.kt read
+        // BuildConfig.VERSION_CODE, so it needs the same explicit treatment here.
+        buildConfigField "int", "VERSION_CODE", "8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     packagingOptions {

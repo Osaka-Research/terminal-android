@@ -109,6 +109,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true // AGP 8 defaults this to false; upstream's own application-plugin build relied on the old default
     }
     externalNativeBuild {
         cmake {

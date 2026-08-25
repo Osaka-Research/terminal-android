@@ -80,6 +80,11 @@ android {
     defaultConfig {
         minSdk 24
         targetSdk 34
+        // Kept even though this is a library now (no applicationId/packaging effect) --
+        // V0Json.kt/HandleGlobal.kt read BuildConfig.VERSION_CODE, which only generates
+        // if these are actually set.
+        versionCode 8
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     packagingOptions {

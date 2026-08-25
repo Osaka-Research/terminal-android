@@ -1,5 +1,8 @@
 buildscript {
-    ext.kotlin_version = '1.9.10' // required by termux-styling / termux-tasker / termux-gui
+    // 1.9.10 (what termux-styling/termux-gui request upstream) still references Gradle's
+    // Convention API, which Gradle 9 removed outright (NoClassDefFoundError: HasConvention).
+    // Bumped to a Kotlin Gradle plugin version that doesn't touch it.
+    ext.kotlin_version = '2.0.21'
 
     repositories {
         mavenCentral()

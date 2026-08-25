@@ -36,8 +36,11 @@ project(':hbuffers').projectDir = new File(rootDir, 'termux-gui/hbuffers')
 // debug key as everything else here, using its "sharedUid" flavor (android:sharedUserId=
 // "com.termux"), so once both APKs are installed its MainActivity runs in :app's own process
 // and TermuxX11Controller (in :app) can call it directly instead of only over IPC.
-include ':x11'
-project(':x11').projectDir = new File(rootDir, 'termux-x11/lorie-app')
+// Named ':lorie-app', not ':x11' -- shell-loader/build.gradle hardcodes the literal project
+// path string "project(':lorie-app')" to read its signingConfig, so the module name has to
+// match upstream's own naming exactly.
+include ':lorie-app'
+project(':lorie-app').projectDir = new File(rootDir, 'termux-x11/lorie-app')
 
 include ':lorie'
 project(':lorie').projectDir = new File(rootDir, 'termux-x11/lorie')

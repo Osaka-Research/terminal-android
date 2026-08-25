@@ -115,7 +115,7 @@ android {
             path file('src/main/cpp/CMakeLists.txt')
         }
     }
-    ndkVersion '23.1.7779620'
+    ndkVersion '23.2.8568313' // pinned to whatever's actually installed in this build environment; upstream requests 23.1.7779620
     namespace 'com.termux.gui'
 }
 

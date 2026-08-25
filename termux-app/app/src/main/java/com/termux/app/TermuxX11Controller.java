@@ -15,7 +15,7 @@ import com.termux.shared.termux.TermuxConstants.TERMUX_APP.RUN_COMMAND_SERVICE;
 import java.io.File;
 
 /**
- * Drives the separately-installed Termux:X11 companion app (built as the ":x11" module here,
+ * Drives the separately-installed Termux:X11 companion app (built as the ":lorie-app" module here,
  * "sharedUid" flavor -- see settings.gradle) from inside this app, instead of the user manually
  * running `pkg install termux-x11-nightly`, `termux-x11 :0 &`, and tapping the X11 app icon
  * themselves every time.
@@ -52,7 +52,7 @@ public class TermuxX11Controller {
 
     /**
      * Whether a session is actually connected right now. Uses reflection because :app has no
-     * compile-time dependency on :x11 -- they're separate APKs and this only resolves to
+     * compile-time dependency on :lorie-app -- they're separate APKs and this only resolves to
      * anything once both are installed and (via the shared sharedUserId) actually running in
      * this same process.
      */

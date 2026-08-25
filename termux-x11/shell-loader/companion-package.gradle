@@ -20,7 +20,9 @@ import org.apache.tools.ant.filters.ReplaceTokens
 import java.security.MessageDigest
 
 def pkgName = 'termux-x11-nightly'
-def pkgVersion = (file("$rootDir/lorie/version.gradle").text =~ /version = "([^"]+)"/)[0][1] + '-0'
+// upstream assumes termux-x11 itself is $rootDir ("$rootDir/lorie/..."); here $rootDir is the
+// overall termux-clone build root, and termux-x11's checkout is one level down from that.
+def pkgVersion = (file("$rootDir/termux-x11/lorie/version.gradle").text =~ /version = "([^"]+)"/)[0][1] + '-0'
 def pkgDescription = 'Companion package for termux-x11 app'
 def pkgHomepage = 'https://github.com/termux/termux-x11'
 def pkgMaintainer = 'Twaik Yont @twaik'
